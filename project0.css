@@ -32,3 +32,23 @@
 h2 {
    font-size: 19px;
 }
+
+#information {
+   padding-left: 40px;
+}
+
+#category {
+   font-weight: bold;
+   font-style: italic;
+   width: 90px;
+   border-right: 1px solid #A9A9A9;
+   height: 90px;
+   font-size: 19px;
+   text-align: right;
+   padding-right: 10px;
+}
+
+.details1 {
+   font-weight: bold;
+   font-size: 15px;
+}
