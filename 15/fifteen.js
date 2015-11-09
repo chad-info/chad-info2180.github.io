@@ -1,5 +1,15 @@
 window.onload = function(){
     
+    function setup(){
+        var button = document.getElementById("shufflebutton");
+    
+        document.getElementById("puzzlearea").appendChild(document.createElement("DIV"));
+        
+        button.addEventListener("click", function(){shuffle();});
+        
+        puzAreaDivs();
+    } //end startup()
+    
     function puzAreaDivs(){
         var array = document.getElementById("puzzlearea").children;
         
@@ -14,16 +24,20 @@ window.onload = function(){
                 element.style.height = "96px";
                 element.style.backgroundColor = "transparent";
                 element.style.float = "left";
-            }else{
+            } //end main if
+            else{
                 element.setAttribute("id",divid);
                 element.style.border = "2px solid black";
                 element.style.width = "96px";
                 element.style.height = "96px";
                 element.style.backgroundColor = "teal";
                 element.style.float = "left";
-            }
-        }
-    }
+                element.addEventListener("click",function(){besideEmptyCell(this);});
+                element.addEventListener("mouseover",function(){highlightCell(this);});
+                element.addEventListener("mouseout",function(){normal(this);});
+            } //end main else
+        } //end for
+    } //end puzAreaDivs()
     
     function shuffle(){
         var array = document.getElementById("puzzlearea").childNodes;
@@ -59,14 +73,53 @@ window.onload = function(){
         }
         
         puzAreaDivs();
-    }
+    } //end shuffle()
     
-    var button = document.getElementById("shufflebutton");
+    function besideEmptyCell(object){
+        var puzzArea = document.getElementById("puzzlearea").children;
+        
+        var emptyC;
+        var objIdx;
+        
+        for(var i=0; i < puzzArea.length; i++){
+            if(puzzArea[i].getAttribute("id") == object.getAttribute("id")){
+                objIdx = i;
+            }
+            if(puzzArea[i].getAttribute("id") == "number"){
+                emptyC = i;
+            }
+        } //end for
+        
+        var above = emptyC - 4;
+        var below = emptyC + 4;
+        var toLeft = emptyC - 1;
+        var toRight = emptyC + 1;
+        
+        if(objIdx == above || objIdx == below || objIdx == toLeft || objIdx == toRight){
+            if(emptyC == 3 && objIdx == 4 || emptyC == 7 && objIdx == 8 || emptyC == 11 && objIdx == 12){
+                return false;
+            }
+            else if(emptyC == 4 && objIdx == 3 || emptyC == 8 && objIdx == 7 || emptyC == 12 && objIdx == 11){
+                return false;
+            } //end else if
+            else{
+                return true;
+            } //end else
+        } //end main if
+        else{
+            return false;
+        } //end main else
+    } //end besideEmptyCell()
     
-    document.getElementById("puzzlearea").appendChild(document.createElement("DIV"));
+    function highlightCell(object){
+        if(besideEmptyCell(object)){
+            object.style.backgroundColor = "#006600";
+        }
+    } //end highlightCell()
     
-    button.addEventListener("click", function(){shuffle();});
+    function normal(object){
+        object.style.backgroundColor = "teal";
+    } //end normal()
     
-    puzAreaDivs();
-    
-};
+    setup(); //start setup
+}; //end window.onload()
