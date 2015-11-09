@@ -35,6 +35,7 @@ window.onload = function(){
                 element.addEventListener("click",function(){besideEmptyCell(this);});
                 element.addEventListener("mouseover",function(){highlightCell(this);});
                 element.addEventListener("mouseout",function(){normal(this);});
+                element.addEventListener("click",function(){move(this);});
             } //end main else
         } //end for
     } //end puzAreaDivs()
@@ -72,7 +73,7 @@ window.onload = function(){
             puzz.appendChild(newChildren[i]);
         }
         
-        puzAreaDivs();
+        //puzAreaDivs();
     } //end shuffle()
     
     function besideEmptyCell(object){
@@ -120,6 +121,20 @@ window.onload = function(){
     function normal(object){
         object.style.backgroundColor = "teal";
     } //end normal()
+    
+    function move(object){
+        var puzzArea = document.getElementById("puzzlearea");
+        
+        var emptyC = document.getElementById("number");
+        var emptyCNS = emptyC.nextSibling;
+        var objectNS = object.nextSibling;
+        
+        
+        if(besideEmptyCell(object)){
+            puzzArea.insertBefore(object,emptyCNS);
+            puzzArea.insertBefore(emptyC,objectNS);
+        }
+    } //end move()
     
     setup(); //start setup
 }; //end window.onload()
