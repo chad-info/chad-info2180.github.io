@@ -4,14 +4,24 @@ window.onload = function(){
         var array = document.getElementById("puzzlearea").children;
         
         for(var i=0; i < array.length; i++){
-            var divid = "number" + array[i].innerHTML.toString();
+            var element = array[i];
+            var divid = "number" + element.innerHTML.toString();
             
-            array[i].setAttribute("id",divid);
-            array[i].style.border = "2px solid black";
-            array[i].style.width = "96px";
-            array[i].style.height = "96px";
-            array[i].style.backgroundColor = 'teal';
-            array[i].style.float = "left";
+            if(divid == "number"){
+                element.setAttribute("id",divid);
+                element.style.border = "2px solid white";
+                element.style.width = "96px";
+                element.style.height = "96px";
+                element.style.backgroundColor = "transparent";
+                element.style.float = "left";
+            }else{
+                element.setAttribute("id",divid);
+                element.style.border = "2px solid black";
+                element.style.width = "96px";
+                element.style.height = "96px";
+                element.style.backgroundColor = "teal";
+                element.style.float = "left";
+            }
         }
     }
     
@@ -20,7 +30,7 @@ window.onload = function(){
         var eleNodes = [];
         var used_indexes = [];
         var newChildren = [];
-        var count = 15;
+        var count = 16;
         var puzz = document.getElementById("puzzlearea");
         
         for(var j =0; j < array.length; j++){
@@ -30,8 +40,8 @@ window.onload = function(){
         }
         
         while(count != 0){
-            var x = Math.floor((Math.random() * 15));
-            used_indexes.push(15);
+            var x = Math.floor((Math.random() * 16));
+            used_indexes.push(16);
             
             if (used_indexes.indexOf(x) == -1){
                 newChildren.push(eleNodes[x]);
@@ -52,6 +62,8 @@ window.onload = function(){
     }
     
     var button = document.getElementById("shufflebutton");
+    
+    document.getElementById("puzzlearea").appendChild(document.createElement("DIV"));
     
     button.addEventListener("click", function(){shuffle();});
     
