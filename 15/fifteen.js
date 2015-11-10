@@ -1,44 +1,53 @@
 window.onload = function(){
-    
+    // Set up the initial contents of webpage.
     function setup(){
-        var button = document.getElementById("shufflebutton");
-    
-        document.getElementById("puzzlearea").appendChild(document.createElement("DIV"));
         
+        var button = document.getElementById("shufflebutton");
         button.addEventListener("click", function(){shuffle();});
         
+        // Add empty tile
+        document.getElementById("puzzlearea").appendChild(document.createElement("DIV"));
+        document.getElementById("puzzlearea").style.backgroundImage = "url('lol.jpg')";
+        
         puzAreaDivs();
-    } //end startup()
+    }
     
     function puzAreaDivs(){
         var array = document.getElementById("puzzlearea").children;
+        
+        var xpos = 0;
+        var ypos = 0;
         
         for(var i=0; i < array.length; i++){
             var element = array[i];
             var divid = "number" + element.innerHTML.toString();
             
             if(divid == "number"){
+                // Add attributes to empty tile
                 element.setAttribute("id",divid);
-                element.style.border = "2px solid white";
+                element.style.border = "2px solid transparent";
                 element.style.width = "96px";
                 element.style.height = "96px";
-                element.style.backgroundColor = "transparent";
+                element.style.backgroundColor = "white";
                 element.style.float = "left";
-            } //end main if
+            }
             else{
+                // Add attributes to tiles
                 element.setAttribute("id",divid);
                 element.style.border = "2px solid black";
                 element.style.width = "96px";
                 element.style.height = "96px";
-                element.style.backgroundColor = "teal";
+                element.style.backgroundColor = "transparent";
                 element.style.float = "left";
+                
+                // Add event listeners to each tile
                 element.addEventListener("click",function(){besideEmptyCell(this);});
                 element.addEventListener("mouseover",function(){highlightCell(this);});
                 element.addEventListener("mouseout",function(){normal(this);});
                 element.addEventListener("click",function(){move(this);});
-            } //end main else
-        } //end for
-    } //end puzAreaDivs()
+            }
+        }
+    } // end puzAreaDivs()
     
     function shuffle(){
         var array = document.getElementById("puzzlearea").childNodes;
@@ -74,7 +83,7 @@ window.onload = function(){
         }
         
         //puzAreaDivs();
-    } //end shuffle()
+    } 
     
     function besideEmptyCell(object){
         var puzzArea = document.getElementById("puzzlearea").children;
@@ -110,17 +119,23 @@ window.onload = function(){
         else{
             return false;
         } //end main else
-    } //end besideEmptyCell()
+    }
     
     function highlightCell(object){
         if(besideEmptyCell(object)){
+            object.style.borderColor = 'red';
+            object.style.textDecoration = "underline";
             object.style.backgroundColor = "#006600";
         }
-    } //end highlightCell()
+    } 
     
     function normal(object){
-        object.style.backgroundColor = "teal";
-    } //end normal()
+        object.style.borderColor = 'black';
+        object.style.backgroundColor = "transparent";
+        object.style.textDecoration = "initial";
+        object.style.textDecoration = "initial";
+        
+    } 
     
     function move(object){
         var puzzArea = document.getElementById("puzzlearea");
@@ -134,7 +149,27 @@ window.onload = function(){
             puzzArea.insertBefore(object,emptyCNS);
             puzzArea.insertBefore(emptyC,objectNS);
         }
-    } //end move()
+    }
     
-    setup(); //start setup
+    function gameover(){
+        var gameboard = document.getElementById("puzzlearea").children;
+        var total = 0
+        for(var i=0; i < gameboard.length; i++){
+            if(i == gameboard[0].innerHTML){
+                total++;
+            }
+        }
+        
+        if(total == gameboard.length){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    function timeer(){}
+    
+    setup(); 
+    
 }; //end window.onload()
