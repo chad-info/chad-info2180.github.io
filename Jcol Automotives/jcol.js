@@ -5,9 +5,30 @@ window.onload = function () {
    //button actions
    function goTo(obj) {
       /*global alert*/
-      alert(obj.innerHTML);
+      //alert(obj.innerHTML);
+      if (obj.innerHTML === "Home") {
+         window.location.href = "index.html";
+      }
       
-      /* To do more */
+      if (obj.innerHTML === "Catalogue") {
+         window.location.href = "catalogue.html";
+      }
+      
+      if (obj.innerHTML === "About Us") {
+         window.location.href = "about.html";
+      }
+      
+      if (obj.innerHTML === "Contact Us") {
+         window.location.href = "contact.html";
+      }
+      
+      if (obj.innerHTML === "Promotions") {
+         window.location.href = "promotions.html";
+      }
+      
+      if (obj.innerHTML === "Checkout") {
+         window.location.href = "cart.html";
+      }
    }
    
    //create menu items
