@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>JCOL Automotives</title>
+      <link rel="stylesheet" href="jcol.css" type="text/css">
+      <script src="http://maps.googleapis.com/maps/api/js"></script>
+      <script src="jcol.js" type="text/javascript"></script>
+      
+      <script>
+         function initialize() {
+            var mapProp = {
+               center:new google.maps.LatLng(18.022067, -76.810750),
+               zoom:10,
+               mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+         var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+         }
+         
+         google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
+   </head>
+   <body>
+      <div id="headers">
+         <div id="logo"></div>
+         <div id="headerbanner"></div>
+      </div>
+      <div id="menubar">
+         <div>Home</div>
+         <div>Catalgue</div>
+         <div>About Us</div>
+         <div>Contact Us</div>
+         <div>Promotions</div>
+         <div>Check Out</div>
+      </div>
+      <divid id="innerbody">
+         <div id="lowerhomebanner">
+            <div id="homeheadings1">
+               <h2>Contact Details</h2>
+            </div>
+            <div class="innerDivs">
+               <div id="contactdetails">
+                  <p>J.C.O.L Automotives</p>
+                  
+                  <p>20 Highflier Avenue, Kingston 1337</p>
+                  <p>1-234-567-8910</p>
+               </div>
+               <div id="googleMap"></div>
+            </div>
+            <div id="homeheadings2">
+               <h2>Message</h2>
+            </div>
+            <div class="innerDivs" id="contactus">
+               <form id="contactform">
+                  <div id="contactdivs">
+                     Subject: <input id="contactinput" type="text" placeholder="Eg: Unable to checkout">
+                  </div>
+                  <div id="contactdivs">
+                     Email: <input id="contactinput" type="email" placeholder="mymale@email.com">
+                  </div>
+                  <div id="contactdivs">
+                     Message: <textarea id="contactmessageinput"></textarea>
+                  </div>
+                  <div id="contactbuttons">
+                     <button id="submit">Send</button>
+                     <button id="cancel">Cancel</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div id=placeholderOtherpages></div>
+      </div>
+      <div id="footers">
+         <div id="footers1">JCOL Automotives</div>
+         <div id="footers2">Home</div>
+         <div id="footers3">Catalogue</div>
+         <div id="footers4">About US</div>
+         <div id="footers5">Contact Us</div>
+         <div id="footers6">Copyrighted 2015 JCOL®</div>
+      </div>
+   </body>
+</html>

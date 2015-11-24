@@ -1,0 +1,252 @@
+body {
+   margin-left: 180px;
+   background-color: azure;
+}
+
+#headers {
+   width: 1000px;
+   height: 150px;   
+}
+
+#logo {
+   width: 398px;
+   height: 98px;
+   border: 1px solid silver;
+   border-radius: 5px;
+   float: left;
+}
+
+#headerbanner {
+   width: 598px;
+   height: 148px;
+   background-color: transparent;
+   border: 1px solid silver;
+   border-radius: 5px;
+   float: left
+}
+
+#menubar {
+   width: 998px;
+   height: 40px;
+   font-size: 20px;
+   font-family: monospace;
+   border: 1px solid silver;
+   border-radius: 5px;
+   background-color: transparent;
+   float: left;
+   text-align: center;
+   vertical-align: middle;
+}
+
+#innerbody{
+   width: 1000px;
+   height: 700px;
+   border-radius: 5px;
+   background-color: darkseagreen;
+   float: left;
+}
+
+#homeheadings1{
+   margin-top: 10px;
+   margin-left: 20px;
+   width: 580px;
+   float: left;
+   /*background-color: blueviolet;*/
+}
+
+#homeheadings2{
+   margin-top: 10px;
+   margin-left: 20px;
+   width: 580px;
+   float: left;
+}
+
+#lowerhomebanner{
+   width: 600px;
+   height: 450px;
+   margin-left: 200px;
+   margin-top: 100px;
+   margin-bottom: 45px;
+   border-radius: 5px;
+}
+
+.innerDivs{
+   width: 100%;
+   height: 33%;
+   border-radius: 10px;
+   background-color: brown;
+   float: left;
+   font-family: Verdana;
+   font-style: oblique;
+}
+
+#placeholder{
+   width: 600px;
+   height: 50px;
+   margin-left: 200px;
+   border-radius: 10px;
+   background-color: brown;
+   float: left;
+}
+
+#placeholderOtherpages{
+   width: 600px;
+   height: 50px;
+   margin-left: 200px;
+   border-radius: 10px;
+   background-color: transparent;
+   float: left;
+}
+
+#footers{
+   font-family: Verdana;
+   font-size: 15px;
+   width: 998px;
+   margin-top: 35px;
+   float: left;
+   border: 1px solid transparent;
+}
+
+#footers6{
+   font-size: 10px;
+   margin-top: 4px;
+   margin-left: 208px;
+   float: left;
+}
+
+h2{
+   font-family: Verdana;
+   font-style: italic;
+}
+
+form{
+   margin-left: 45px;
+   margin-top: 45px;
+   float: left;
+   width: 85%;
+   height: 80%;
+}
+
+input{
+   border: 1px solid darkslategrey;
+   width: 100%;
+   height: 30px;
+}
+
+#login{
+   width: 90px;
+   height: 30px;
+   float: right;
+   margin-right: 5px;
+}
+
+#cancel{
+   width: 90px;
+   height: 30px;
+   float: right;
+   margin-right: 10px;
+}
+
+#submit{
+   width: 90px;
+   height: 30px;
+   float: right;
+   margin-right: 5px;
+}
+
+button{
+   margin-top: 5px;
+   border-radius: 10px;
+   background-color: cadetblue;
+   border-color: cadetblue;
+   font-family: Verdana;
+}
+
+h3{
+   float: left;
+}
+
+#h2login{
+   margin-left: 100px;
+   width: 100%;
+}
+
+.formdivs{
+   margin-right: 70px;
+   margin-bottom: 15px;
+   float: right;
+}
+
+#captcha{
+   width: 120px;
+   height: 30px;
+   margin-top: 5px;
+   border-radius: 10px;
+   background-color: cadetblue;
+   border-color: cadetblue;
+}
+
+.forminputs{
+   width: 300px;
+   margin-left: 40px;
+   border-radius: 5px;
+   border: 2px solid cadetblue;
+}
+
+.formradio{
+   margin-left: 30px;
+   width: 30px;
+   height: 20px;
+}
+
+#googleMap{
+   background-color: transparent;
+   margin-top: 15px;
+   width: 45%;
+   height: 121px;
+   float: left;
+}
+
+#contactdivs{
+   margin-bottom: 10px;
+   height: 30px;
+}
+
+#contactinput{
+   border-radius: 5px;
+   margin-right: 40px;
+   width: 300px;
+   height: 20px;
+   float: right;
+   border: 2px solid cadetblue;
+}
+
+#contactmessageinput{ 
+   border-radius: 5px;
+   margin-right: 40px;
+   width: 295px;
+   float: right;
+   border: 2px solid cadetblue;
+}
+
+#contactform{
+   margin-left: 30px;
+   margin-top: 20px;
+}
+
+#contactdetails{
+   margin-left: 15px;
+   margin-right: 25px;
+   margin-top: 10px;
+   width: 45%;
+   background-color: transparent;
+   float: left;
+}
+
+#contactus{
+   height: 40%;
+}
+
+#contactbuttons{
+   margin-right: 35px;
+}
