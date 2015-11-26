@@ -4,35 +4,25 @@ window.onload = function () {
    
    //button actions
    function goTo(obj) {
-      /*global alert*/
-      //alert(obj.innerHTML);
-      if (obj.innerHTML === "Home") {
-         window.location.href = "index.html";
-      }
+      /*
+      "Brevity is the soul of wit." - A Forever Knight
       
-      if (obj.innerHTML === "Catalogue") {
-         window.location.href = "catalogue.html";
-      }
+      You may not realise unless you go back a few commits
+      in the repo, but there were if statements for each menu
+      option. I thought it was a waste of code lines, and
+      since I realised that the code was repetitive, I sought for
+      cleaner solution... This is a tip for future endevours:
+      When you see code repeating, then you should be able
+      to reduce it into one line or so.
+      */
       
-      if (obj.innerHTML === "About Us") {
-         window.location.href = "about.html";
-      }
-      
-      if (obj.innerHTML === "Contact Us") {
-         window.location.href = "contact.html";
-      }
-      
-      if (obj.innerHTML === "Promotions") {
-         window.location.href = "promotions.html";
-      }
-      
-      if (obj.innerHTML === "Checkout") {
-         window.location.href = "cart.html";
-      }
-   }
+      var page;
+      page = (obj.innerHTML).toLowerCase().replace(" ", "");
+      window.location.href = page + ".html";
+   } //end of goTo()
    
    //create menu items
-   function initMenuBar() {
+   function menuBar() {
       
       //declarations
       var i, options, child;
@@ -46,31 +36,33 @@ window.onload = function () {
             child.style.width = "164.6px";
             child.style.height = "38px";
             child.style.float = "left";
-            child.setAttribute("id", child.innerHTML);
+            child.setAttribute("id", child.innerHTML); // eg: id="Home"
             child.addEventListener("click", function () {goTo(this); });
-         }
-      }
+         } //end if
+      } //end for
       
    } //end of initMenuBar()
    
-   function initInnerBody() {} //end of initInnrBody()
+   function innerBody() {
+      /* To Do */
+   } //end of initInnrBody()
    
-   function initFooters() {
-      var divs, i;
-      divs = document.getElementById("footers").childNodes;
+   function footers() {
+      var div, i;
+      div = document.getElementById("footers").childNodes;
       
-      for (i = 0; i < divs.length; i += 1) {
-         if (divs[i].nodeType === 1) {
-            if (divs[i].innerHTML === "Copyrighted 2015 JCOL®") {
+      for (i = 0; i < div.length; i += 1) {
+         if (div[i].nodeType === 1) {
+            if (div[i].innerHTML === "Copyrighted 2015 JCOL®") {
                break;
-            }
-            divs[i].style.float = "left";
-            divs[i].style.marginRight = "50px";
-            divs[i].addEventListener("click", function () { goTo(this); });
-         }
-      }
-   }
+            } //end if@lvl2
+            div[i].style.float = "left";
+            div[i].style.marginRight = "50px";
+            div[i].addEventListener("click", function () { goTo(this); });
+         } //end if@lvl 1
+      } //end for
+   } // end footers()
    
-   initMenuBar();
-   initFooters();   
+   menuBar();
+   footers();   
 }; //end window.onload
