@@ -5,7 +5,7 @@ window.onload = function () {
    //button actions
    function goTo(obj) {
       /*
-      "Brevity is the soul of wit." - A Forever Knight
+      "Brevity is the soul of wit." - A Forever Knight(B 10)
       
       You may not realise unless you go back a few commits
       in the repo, but there were if statements for each menu
