@@ -3,24 +3,6 @@ window.onload = function () {
    //Opens the respective page when chosen in menus
    function open(obj) {
       switch (obj.id) {
-         case "home":
-            window.location.href = "home.html";
-            break;
-         case "catalogue":
-            window.location.href = "catalogue.html";
-            break;
-         case "promotions":
-            window.location.href = "promotions.html";
-            break;
-         case "about":
-            window.location.href = "about.html";
-            break;
-         case "contact":
-            window.location.href = "contact.html";
-            break;
-         case "cart":
-            window.location.href = "cart.html";
-            break;
          case "footertitle":
             window.location.href = "home.html";
             break;
@@ -46,8 +28,9 @@ window.onload = function () {
             alert("Last Revised: November 27, 2015");
             break;
          default:
+            window.location.href = obj.id + ".html";
             break;
-      }
+      }// End Switch()
    } //End function open()
    
    //Adds event listener to each menu item
