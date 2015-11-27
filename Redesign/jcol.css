@@ -32,6 +32,27 @@
    border-top-right-radius: 20px;
    float: left;
 }
+#searchdiv{
+   background-color: firebrick;
+   margin: 0px;
+   margin-top: 32.5%;
+   width: 50%;
+   height: 15%;
+   float: right;
+}
+#search{
+   margin: 0px;
+   width: 74.7%;
+   height: 100%;
+   float: right;
+}
+#searchbutton{
+   margin: 0px;
+   margin-left: 0.3%;
+   width: 25%;
+   height: 100%;
+   float: right;
+}
 
 /******************************************/
 
