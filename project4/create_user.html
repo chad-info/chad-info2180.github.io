@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cheapo Mail - Create User(Admin)</title>
+        <script type="text/javascript" src="function.js"></script>
+        <link rel="stylesheet" href="design.css" type="text/css" />
+    </head>
+    <body>
+        <form action="server.php" method="post">
+            First Name: <br/><input type="text" name="first_name"/><br/>
+            Last Name: <br/><input type="text" name="last_name"/><br/>
+            Password: <br/><input type="text" name="password"/><br/>
+            Username: <br/><input type="text" name="username"/><br/>
+            <input type="hidden" name="poster" value="create_user"/>
+            <input type="submit" value="Create"/>
+        </form>
+    </body>
+</html>
