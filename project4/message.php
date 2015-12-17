@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +9,9 @@
         <link rel="stylesheet" href="design.css" type="text/css" />
     </head>
     <body>
-        <form action="connect.php" method="post">
+        You are logged in as: <strong><?php echo $_SESSION["username"]; ?></strong>
+        <h3>Compose a Message!</h3>
+        <form action="server.php" method="post">
             Subject: <br/><input type="text" name="subject"/><br/>
             Recipients: <br/><input type="text" name="recipients"/><br/>
             Body: <br/><textarea name="body" rows="5" cols="50"></textarea><br/>

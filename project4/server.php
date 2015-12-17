@@ -6,6 +6,19 @@
     
     //Add a User
     function add_user($db){
+        //Check that Admin is logged in
+        $query = $db->prepare("SELECT id FROM Admin WHERE admin_name=?");
+        $query->bind_param("s",$_SESSION["username"]);
+        $query->execute();
+        
+        $values = $query->get_result();
+        
+        $result = $values->fetch_array(MYSQLI_NUM);
+        
+        if (count($result) === 0){
+            exit("You must log in as a Admin");
+        }
+        
         $first_name = $_POST["first_name"];
         $last_name = $_POST["last_name"];
         $password = $_POST["password"];
@@ -22,17 +35,52 @@
     
     //Send a message to a user
     function send_message($db){
-        $subject = $_POST["subject"];
+        //Array of Recipients
         $recips = $_POST["recipients"];
-        $body = $_POST["body"];
         
+        //Get User Id from logged in user
+        $query = $db->prepare("SELECT id FROM User WHERE username=?");
+        $query->bind_param("s",$_SESSION["username"]);
+        $query->execute();
+        $value = $query->get_result();
+        
+        while ($answer = $value->fetch_array(MYSQLI_NUM)){
+            foreach ($answer as $id){
+                $userId = $id;
+            }
+        }
+        
+        //Get Recipients from comma separated list
         $recipients = explode(',',$recips);
+        
+        
+        $sql = $db->prepare("INSERT Message (body,subject,user_id,recipient_id) VALUES (?,?,?,?)");
+        $sql->bind_param("ssii",$body,$subject,$userId,$recipientId);
         
         foreach($recipients as $recipient){
             //Construct SQL statment
+            $subject = $_POST["subject"];
+            $body = $_POST["body"];
+            
+            //Get Recipients ID from their names
+            $nameQ = $db->prepare("SELECT id FROM User WHERE first_name=?");
+            $nameQ->bind_param("s",$recipient);
+            $nameQ->execute();
+            $result = $nameQ->get_result();
+            
+            while ($vals = $result->fetch_array(MYSQLI_NUM)){
+                foreach($vals as $r_id){
+                    $recipientId = $r_id;
+                }
+            }
+            
             //Insert into Message table
-            //Close SQL statement
+            $sql->execute();
         }
+        
+        //Close SQL statement
+        $query->close();
+        $sql->close();
     }
     
     //Mark a message as Read
@@ -66,6 +114,7 @@
         session_destroy();
     }
     
+    //Choose Which function based on form to execute
     if ($from === "create_user"){
         add_user($db);
     }elseif ($from === "send_message"){
