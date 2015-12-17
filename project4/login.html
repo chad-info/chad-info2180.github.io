@@ -6,9 +6,10 @@
         <link rel="stylesheet" href="design.css" type="text/css" />
     </head>
     <body>
-        <form>
-            Username or Email: <br/><input type="text" name="username" placeholder="'Jack Jill' or 'jackyj@jmail.com'"/><br/>
-            Password: <br/><input type="text" name="password"/><br/>
+        <form action="server.php" method="post">
+            Username: <br/><input type="text" name="username" placeholder="'Jack Daw' or 'jackyD@jmail.com'"/><br/>
+            Password: <br/><input type="password" name="password"/><br/>
+            <input type="hidden" name="poster" value="login"/>
             <input type="submit" value="Login"/>
         </form>
     </body>

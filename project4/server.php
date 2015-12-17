@@ -2,6 +2,7 @@
     include("connect.php");
     
     $from = $_POST["poster"];
+    session_start();
     
     //Add a User
     function add_user($db){
@@ -41,18 +42,36 @@
     
     //Login Cheapo User
     function login($db){
-        //To Do...
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        
+        $sql = $db->prepare("SELECT username FROM User WHERE username=? AND password=?");
+        $sql->bind_param("ss",$username,$password);
+        $sql->execute();
+        
+        $value = $sql->get_result();
+        
+        while ($item = $value->fetch_array(MYSQLI_NUM)){
+            foreach ($item as $user){
+                $_SESSION["username"] = $user;
+            }
+        }
+        
+        header("Location: home.php");
     }
     
     //Logout Cheapo User
-    function logout($db){
-        //To Do...
+    function logout(){
+        session_unset();
+        session_destroy();
     }
     
     if ($from === "create_user"){
         add_user($db);
     }elseif ($from === "send_message"){
         send_message($db);
+    }elseif ($from === "login"){
+        login($db);
     }
     
     $db->close();
