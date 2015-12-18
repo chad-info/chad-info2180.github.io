@@ -28,8 +28,8 @@ a {
     margin-left: 20px;
 }
 
-#logoutButton{
-    margin-left: 10px;
+#logButton{
+    margin-left: 0px;
     text-decoration: underline;
     cursor: pointer;
     color: blue;

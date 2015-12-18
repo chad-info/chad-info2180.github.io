@@ -111,9 +111,7 @@
             }
         }
         
-        if($_SESSION["username"] === NULL){
-            header("Location: login.html");
-        }else{
+        if($_SESSION["username"] != NULL){
             header("Location: home.php");
         }
     }

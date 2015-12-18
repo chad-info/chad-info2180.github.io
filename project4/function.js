@@ -9,13 +9,22 @@ window.onload = function(){
             this.innerHTML = "Close Inbox";
         }else{
             empty("message_list");
-            this.innerHTML = "Go to Inbox";
+            this.innerHTML = "Open Inbox";
         }
     });
     
-    //Log Out User
-    document.getElementById("logoutButton").addEventListener("click",function() {
-        logout();
+    //Log In User
+    document.getElementById("logButton").addEventListener("click",function() {
+        var text = document.getElementById("logButton").innerHTML;
+        
+        if (text === "Log In"){
+            login();
+            
+        }else{
+            logout();
+            empty("message_list");
+            empty("composeSection");
+        }
     });
     
     //Compose a message
@@ -66,33 +75,6 @@ window.onload = function(){
         httpXMLObj.send();
     } //end compose()
     
-    function send_message(){
-        alert("Hey");
-    }
-        /*var httpXMLObj = new XMLHttpRequest();
-        
-        var subject = document.getElementById("subject").value;
-        var recipients = document.getElementById("recipients").value;
-        var body = document.getElementById("body").value;
-        var poster = document.getElementById("poster").value;
-        
-        var data = "subject" + encodeURIComponent(subject) 
-        + "recipients" + encodeURIComponent(recipients) 
-        + "body" + encodeURIComponent(body) 
-        + "poster" + encodeURIComponent(poster);
-        
-        alert(data);
-        /*
-        if (!httpXMLObj){
-            alert("Unable to create XMLHttpRequest Object");
-            return false;
-        }
-        
-        httpXMLObj.open("POST", "server.php");
-        httpXMLObj.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        httpXMLObj.send();
-    }*/
-    
     //Get List of messages to user
     function message_list(){
         document.getElementById("message_list").innerHTML = "Loading...";
@@ -118,8 +100,10 @@ window.onload = function(){
         httpXMLObj.send();
     } //end message_list()
     
-    //Log Out user
-    function logout(){
+    //Log in User
+    function login(){
+        document.getElementById("loginSection").innerHTML = "Please wait..."
+        
         var httpXMLObj = new XMLHttpRequest();
         
         if (!httpXMLObj){
@@ -127,9 +111,45 @@ window.onload = function(){
             return false;
         }
         
+        httpXMLObj.onreadystatechange = function(){
+            if (httpXMLObj.readyState === 4){
+                if (httpXMLObj.status === 200){
+                    document.getElementById("loginSection").innerHTML = httpXMLObj.responseText;
+                }
+                else{
+                    document.getElementById("loginSection").innerHTML = "Error: Cannot read DB";
+                }
+            }
+        } // end anon function()
+        
+        httpXMLObj.open("GET","login.php");
+        httpXMLObj.send();
+    }
+    
+    //Log Out user
+    function logout(){
+        document.getElementById("loginSection").innerHTML = "Loggin out...";
+        var httpXMLObj = new XMLHttpRequest();
+        
+        if (!httpXMLObj){
+            alert("Unable to create XMLHttpRequest Object");
+            return false;
+        }
+        
+        httpXMLObj.onreadystatechange = function(){
+            if (httpXMLObj.readyState === 4){
+                if (httpXMLObj.status === 200){
+                    document.getElementById("loginSection").innerHTML = httpXMLObj.responseText;
+                    document.getElementById("user_name_section").innerHTML = "";
+                    //document.getElementById("logButton").innerHTML = "Log In";
+                }
+                else{
+                    document.getElementById("home_html").innerHTML = "Error: Cannot read DB";
+                }
+            }
+        } // end anon function()
+        
         httpXMLObj.open("GET","logout.php");
         httpXMLObj.send();
-        
-        window.location.href = "login.html";
     } // end logout()
 }; // end window.onload()
