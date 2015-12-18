@@ -1,3 +1,47 @@
 a {
     text-decoration: none;
 }
+
+#inboxDiv {
+    width: 15%;
+    border: 3px solid grey;
+    cursor: pointer;
+}
+
+#closeInbox {
+    width: 15%;
+    border: 3px solid grey;
+    cursor: pointer;
+}
+
+#compose {
+    width: 15%;
+    border: 3px solid grey;
+    cursor: pointer;
+}
+
+#message_list {
+    margin-left: 20px;
+}
+
+#composeSection {
+    margin-left: 20px;
+}
+
+#logoutButton{
+    margin-left: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+    color: blue;
+}
+
+.subbutton {
+    cursor: pointer;
+    background-color: #6496c8;
+    border: none;
+    height: 30px;
+}
+
+#message_form_fieldset {
+    border: none;
+}

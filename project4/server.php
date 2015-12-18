@@ -81,6 +81,8 @@
         //Close SQL statement
         $query->close();
         $sql->close();
+        
+        header("Location: home.php");
     }
     
     //Mark a message as Read
@@ -109,7 +111,11 @@
             }
         }
         
-        header("Location: home.php");
+        if($_SESSION["username"] === NULL){
+            header("Location: login.html");
+        }else{
+            header("Location: home.php");
+        }
     }
     
     //Choose Which function based on form to execute
