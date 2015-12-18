@@ -9,6 +9,7 @@ window.onload = function(){
             this.innerHTML = "Close Inbox";
         }else{
             empty("message_list");
+            message_list_closed();
             this.innerHTML = "Open Inbox";
         }
     });
@@ -32,6 +33,7 @@ window.onload = function(){
         var cpsSec = document.getElementById("composeSection").innerHTML;
         
         if (cpsSec === ""){
+            document.getElementById("composeSection").innerHTML = "Opening...";
             compose();
             document.getElementById("compose").innerHTML = "Close Composition"
         }else{
@@ -39,11 +41,6 @@ window.onload = function(){
             document.getElementById("compose").innerHTML = "Compose New Message!"
         }
         
-    });
-    
-    //Send message
-    document.getElementById("send_message_button").addEventListener("click",function() {
-        //send_message();
     });
     
     //Unload Inbox
@@ -66,12 +63,12 @@ window.onload = function(){
                     document.getElementById("composeSection").innerHTML = httpXMLObj.responseText;
                 }
                 else{
-                    document.getElementById("composeSection").innerHTML = "Error: Unable to load compose instance :(";
+                    document.getElementById("composeSection").innerHTML = "Error: Ensure you are logged in";
                 }
             }
         } // end anon function()
         
-        httpXMLObj.open("GET", "message.html");
+        httpXMLObj.open("GET", "message.php");
         httpXMLObj.send();
     } //end compose()
     
@@ -100,9 +97,21 @@ window.onload = function(){
         httpXMLObj.send();
     } //end message_list()
     
+    function message_list_closed(){
+        var httpXMLObj = new XMLHttpRequest();
+        
+        if (!httpXMLObj){
+            alert("Unable to create XMLHttpRequest Object");
+            return false;
+        }
+        
+        httpXMLObj.open("GET", "message_list_closed.php");
+        httpXMLObj.send();
+    }
+    
     //Log in User
     function login(){
-        document.getElementById("loginSection").innerHTML = "Please wait..."
+        document.getElementById("loginSection").innerHTML = "Loading..."
         
         var httpXMLObj = new XMLHttpRequest();
         
@@ -124,11 +133,11 @@ window.onload = function(){
         
         httpXMLObj.open("GET","login.php");
         httpXMLObj.send();
-    }
+    } //end login()
     
     //Log Out user
     function logout(){
-        document.getElementById("loginSection").innerHTML = "Loggin out...";
+        document.getElementById("loginSection").innerHTML = "Loading...";
         var httpXMLObj = new XMLHttpRequest();
         
         if (!httpXMLObj){

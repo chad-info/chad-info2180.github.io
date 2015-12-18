@@ -35,6 +35,10 @@
     
     //Send a message to a user
     function send_message($db){
+    
+        if ($_SESSION["username"] === NULL){
+            exit("Ensure you are logged in! <br><a href='home.php'>Home</a>");
+        }
         //Array of Recipients
         $recips = $_POST["recipients"];
         

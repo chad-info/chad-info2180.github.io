@@ -8,6 +8,10 @@
             include("connect.php");
             session_start();
             
+            if ($_SESSION["username"] === NULL){
+                exit("You need to be logged in");
+            }
+            
             $query = $db->prepare("SELECT id FROM User WHERE username=?");
             $query->bind_param("s",$_SESSION["username"]);
             $query->execute();
@@ -34,7 +38,7 @@
                 exit("You currently have no messages in your inbox...");
                 $testresults->close();
             }else{
-                $sql = $db->prepare("SELECT body,subject,user_id FROM Message WHERE recipient_id=?");
+                $sql = $db->prepare("SELECT id,body,subject,user_id FROM Message WHERE recipient_id=?");
                 $sql->bind_param("i",$user_id);
                 $sql->execute();
                 
@@ -50,10 +54,33 @@
                         }
                     }
                     
-                    echo "<strong>Subject:</strong> " . $bodies["subject"] . "<br>"
-                    . " <strong>From:</strong> " . $sender_name . "<br>"
-                    . " <strong>Message:</strong> " . $bodies["body"]
-                    . "<br><br>";
+                    $readql = $db->prepare("SELECT id,message_id FROM Message_read WHERE reader_id=? AND message_id=?");
+                    $readql->bind_param("ii",$user_id,$bodies["id"]);
+                    $readql->execute();
+                    
+                    $check = $readql->get_result();
+                    
+                    while($checked = $check->fetch_array(MYSQLI_NUM)){
+                        if (count($checked) > 0){
+                            $open = "READ";
+                        }
+                    }
+                    
+                    $readql->close();
+                    
+                    if ($open === "READ"){
+                        echo "<span style='color:green; font-weight:bold; font-style:italic;'>READ</span><br>" 
+                        . "Subject: " . $bodies["subject"] . "<br>"
+                        . " From: " . $sender_name . "<br>"
+                        . " Message: " . $bodies["body"]
+                        . "<br><br>";
+                    }else{
+                        echo "<span style='color:blue; font-weight:bold; font-style:italic;'>NEW</span><br>" 
+                        . "<strong>Subject:</strong> " . $bodies["subject"] . "<br>"
+                        . " <strong>From:</strong> " . $sender_name . "<br>"
+                        . " <strong>Message:</strong> " . $bodies["body"]
+                        . "<br><br>";
+                    }
                 } //end while
             } //end if-else
             
