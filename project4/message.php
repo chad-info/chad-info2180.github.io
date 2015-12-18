@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,6 +16,7 @@ session_start();
             Recipients: <br/><input type="text" name="recipients"/><br/>
             Body: <br/><textarea name="body" rows="5" cols="50"></textarea><br/>
             <input type="hidden" name="poster" value="send_message"/>
+            <a href="home.php">Cancle</a>
             <input type="submit" value="Send Message!"/>
         </form>
     </body>

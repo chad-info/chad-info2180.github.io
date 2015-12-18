@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,10 +9,13 @@ session_start();
         <link rel="stylesheet" href="design.css" type="text/css" />
     </head>
     <body>
-        <p>Hello, Cheapo!</p>
-        You are logged in as: <strong><?php echo $_SESSION["username"]; ?></strong>
-        <div id="inboxDiv">Your Inbox</div>
-        <br><button id="send_new_message">Compose a Message!</button>
-        <br><br><button id="logoutButton">Logout!</button>
+        <p>
+            Hello, Cheapo! Hello, 
+            <strong><?php echo $_SESSION["username"]; ?></strong>
+        </p>
+        <div id="inboxDiv">Your Inbox</span></div>
+        <div id="message_list">You currently have no Messages in your Inbox...</div>
+        <br><a href="message.php">Compose and Send Message!</a>
+        <br><br><button id="logoutButton">Logout</button>
     </body>
 </html>

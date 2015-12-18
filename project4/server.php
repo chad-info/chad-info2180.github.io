@@ -1,12 +1,12 @@
 <?php
     include("connect.php");
+    session_start();
     
     $from = $_POST["poster"];
-    session_start();
     
     //Add a User
     function add_user($db){
-        //Check that Admin is logged in
+        //Check that Admin is logged in BEFORE serving request
         $query = $db->prepare("SELECT id FROM Admin WHERE admin_name=?");
         $query->bind_param("s",$_SESSION["username"]);
         $query->execute();
@@ -16,7 +16,7 @@
         $result = $values->fetch_array(MYSQLI_NUM);
         
         if (count($result) === 0){
-            exit("You must log in as a Admin");
+            exit("You must log in as a Admin complete this action");
         }
         
         $first_name = $_POST["first_name"];
@@ -88,6 +88,10 @@
         //To Do...
     }
     
+    function inbox($db){
+        //To Do...
+    }
+    
     //Login Cheapo User
     function login($db){
         $username = $_POST["username"];
@@ -106,12 +110,6 @@
         }
         
         header("Location: home.php");
-    }
-    
-    //Logout Cheapo User
-    function logout(){
-        session_unset();
-        session_destroy();
     }
     
     //Choose Which function based on form to execute
